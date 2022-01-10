@@ -15,6 +15,11 @@ jobs:
       - name: Clone and checkout branch
         uses: actions/checkout@master
 
+      - name: Generate index.html
+        env:
+          APP_URL: ${{ secrets.DEMO_APP_URL }} 
+        run: sh ./build-index.sh
+      
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
