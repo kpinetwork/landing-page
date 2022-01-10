@@ -1,0 +1,1 @@
+sed "s|\[APP_URL\]|$APP_URL|g" src/new_home.html > src/index.html
