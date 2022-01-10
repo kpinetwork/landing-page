@@ -79,7 +79,7 @@ jobs:
       - name: Sync S3
         uses: jakejarvis/s3-sync-action@master
         env:
-          SOURCE_DIR: './dist'
+          SOURCE_DIR: './src'
           AWS_REGION: ${{ steps.tf-outputs.outputs.region }}
           AWS_S3_BUCKET: ${{ steps.tf-outputs.outputs.bucket_distribution }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
