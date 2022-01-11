@@ -17,7 +17,7 @@ resource "aws_acm_certificate" "cert" {
   lifecycle {
     create_before_destroy = true
   }
-  subject_alternative_names = var.cert_sans
+  //subject_alternative_names = var.cert_sans
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
