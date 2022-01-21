@@ -3,16 +3,10 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 variable "landing_bucket" {}
-variable "domain" {}
 variable "sub_domain" {}
 variable "certificate_arn" {}
-variable "environment" {}
-variable "is_production" {}
 locals {
-  aliases = var.is_production ? [
-    var.domain,
-    var.sub_domain
-  ] : [
+  aliases = [
     var.sub_domain
   ]
 }
