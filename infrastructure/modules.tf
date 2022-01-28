@@ -5,12 +5,9 @@ module "buckets" {
 
 module "cdn" {
   source = "./cdn/"
-  domain = var.domain
   sub_domain = local.domains[local.environment]
   certificate_arn = module.cert.certificate_validation_arn
   landing_bucket = module.buckets.landing_bucket
-  environment = local.environment
-  is_production = local.is_production
 }
 
 module "policy" {
@@ -19,18 +16,15 @@ module "policy" {
   aws_terraform_user_provider = var.aws_terraform_user_provider
   aws_account_id = var.aws_account_id
   cloudfront_distribution_oai_iam_arn = module.cdn.landing_cloudfront_distribution_oai
-  environment = local.environment
 }
 
 module "dns" {
   source = "./dns"
   aws_cloudfront_distribution = module.cdn.landing_cloudfront_distribution
-  domain = var.domain
   sub_domain = local.domains[local.environment]
   domain_certificates = module.cert.domain_certificate
   cert_sans = local.cert_sans
   hosted_zone_id = aws_route53_zone.kpinetwork.zone_id
-  is_production = local.is_production
 }
 
 module "cert" {

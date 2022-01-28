@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    name: Deploy to AWS --prod
+    name: Deploy to AWS --demo
     runs-on: ubuntu-latest
     steps:
       - name: Clone and checkout branch
@@ -15,7 +15,7 @@ jobs:
 
       - name: Generate index.html
         env:
-          APP_URL: ${{ secrets.PROD_APP_URL }} 
+          APP_URL: ${{ secrets.DEMO_APP_URL }} 
         run: sh ./build-index.sh
       
       - name: Setup Terraform
@@ -35,7 +35,7 @@ jobs:
         id: workspace
         run: |
           cd infrastructure
-          terraform workspace select prod
+          terraform workspace select demo
       - name: Terraform Validate
         id: validate
         run: |
